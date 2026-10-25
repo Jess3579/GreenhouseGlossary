@@ -1,20 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
+using GreenhouseGlossary.Models;
+using GreenhouseGlossary.Repositories;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GreenhouseGlossary.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly IPlantRepository _plantRepository;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IPlantRepository plantRepository)
         {
-            _logger = logger;
+            _plantRepository = plantRepository;
         }
 
-        public void OnGet()
-        {
+        public List<Plant> Plants { get; private set; } = new();
 
+        public async Task OnGetAsync()
+        {
+            Plants = await _plantRepository.GetAllAsync();
         }
     }
 }
