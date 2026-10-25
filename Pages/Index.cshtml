@@ -21,4 +21,25 @@
     <div class="col-md-4">
         @* Add the third content section here. *@
     </div>
-</section
+</section>
+
+<section class="mt-4">
+    <h2>Plants</h2>
+
+    @if (Model.Plants.Count == 0)
+    {
+        <p>No plants are available yet.</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var plant in Model.Plants)
+            {
+                <li>
+                    @plant.CommonName
+                    (<em>@plant.ScientificName</em>)
+                </li>
+            }
+        </ul>
+    }
+</section>

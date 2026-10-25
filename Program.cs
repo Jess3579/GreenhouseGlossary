@@ -1,5 +1,7 @@
 using GreenhouseGlossary.Models;
+using GreenhouseGlossary.Repositories;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace GreenhouseGlossary
 {
@@ -18,6 +20,8 @@ namespace GreenhouseGlossary
                     ?? throw new InvalidOperationException(
                         "Connection string 'PlantContext' not found.")));
 
+
+            builder.Services.AddScoped<IPlantRepository, PlantRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
