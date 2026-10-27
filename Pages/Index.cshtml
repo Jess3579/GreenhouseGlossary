@@ -4,42 +4,110 @@
     ViewData["Title"] = "Home";
 }
 
-<section class="text-center py-5">
+@section Styles {
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+}
+
+<section class="hero-section text-center">
     <h1>Greenhouse Glossary</h1>
-    @* Add our introduction here. *@
-</section>
 
-<section class="row g-4">
-    <div class="col-md-4">
-        @* Add the first content section here. *@
+    <div class="header-shelf" aria-hidden="true">
+        <div class="shelf-board"></div>
+        <div class="shelf-bracket shelf-bracket-left"></div>
+        <div class="shelf-bracket shelf-bracket-right"></div>
     </div>
 
-    <div class="col-md-4">
-        @* Add the second content section here. *@
-    </div>
+    <p class="introduction">
+        Explore our plant collections and learn about their classifications and characteristics.
+    </p>
 
-    <div class="col-md-4">
-        @* Add the third content section here. *@
+    
+</section>
+
+<section class="glossary-section">
+    <div class="row g-4">
+
+        <!-- Jess's Glossary -->
+        <div class="col-md-6">
+            <div class="glossary-link glossary-link-jess">
+                <p>Browse Jess's Glossary Here!</p>
+            </div>
+        </div>
+
+        <!-- Alainna's Glossary -->
+        <div class="col-md-6">
+            <div class="glossary-link glossary-link-alainna">
+                <p>Browse Alainna's Glossary Here!</p>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<section class="mt-4">
-    <h2>Plants</h2>
+<section class="about-section">
+    <h2>About Our Project</h2>
 
-    @if (Model.Plants.Count == 0)
-    {
-        <p>No plants are available yet.</p>
-    }
-    else
-    {
-        <ul>
-            @foreach (var plant in Model.Plants)
-            {
-                <li>
-                    @plant.CommonName
-                    (<em>@plant.ScientificName</em>)
-                </li>
-            }
-        </ul>
-    }
+    <p>
+        The Plant Glossary is a resource for discovering and learning
+        about different plant species. Browse plant information and
+        expand your knowledge of the natural world.
+    </p>
 </section>
+
+<section class="features-section">
+    <h2>What You Can Discover</h2>
+
+    <div class="feature-container">
+        <article class="feature-card">
+            <h3>Plant Names</h3>
+            <p>Explore common and scientific plant names.</p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Plant Information</h3>
+            <p>Learn about plant characteristics and classifications.</p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Plant Diversity</h3>
+            <p>Discover the variety of plants in our glossary.</p>
+        </article>
+    </div>
+</section>
+
+<!-- Search Section -->
+<div class="row justify-content-center mb-5">
+    <div class="col-md-6">
+        <form id="plantSearchForm">
+            <div class="input-group">
+                <input type="text"
+                       id="searchTerm"
+                       class="form-control"
+                       placeholder="Search for a plant..."
+                       aria-label="Search for a plant" />
+
+                <button class="btn btn-outline-success" type="submit">
+                    Search
+                </button>
+            </div>
+        </form>
+
+        <p id="searchMessage" class="mt-2" aria-live="polite"></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById("plantSearchForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const searchTerm = document.getElementById("searchTerm").value.trim();
+        const message = document.getElementById("searchMessage");
+
+        if (searchTerm === "") {
+            message.textContent = "Please enter a plant name.";
+        } else {
+            message.textContent = 'Search for "' + searchTerm +
+                '" will be available when the glossary is implemented.';
+        }
+    });
+</script>
