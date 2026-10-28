@@ -4,6 +4,127 @@
     ViewData["Title"] = "Contact";
 }
 
-<h1>Contact</h1>
+<style>
+    .contact-page {
+        background-color: #c8e3ca;
+        color: #3d352d;
+        font-family: Garamond, Georgia, serif;
+        font-size: 20px;
+        padding: 40px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 1px solid #a3c7a6;
+        border-radius: 20px;
+    }
 
-@* information will be added after our team decides on the content. *@
+        .contact-page h1,
+        .contact-page h2 {
+            font-family: Garamond, Georgia, serif;
+        }
+
+        .contact-page h1 {
+            font-size: 48px;
+        }
+
+    .contact-leaf {
+        font-size: 48px;
+    }
+
+    .contact-line {
+        width: 80px;
+        height: 3px;
+        background-color: #6f9472;
+        margin: 20px auto;
+    }
+
+    .contact-card {
+        background-color: #f7f6eb;
+        padding: 30px;
+        border: 1px solid #a3c7a6;
+        border-radius: 15px;
+        box-shadow: 0 5px 12px #00000015;
+    }
+
+    .contact-initial {
+        background-color: #c8e3ca;
+        border: 1px solid #6f9472;
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        line-height: 75px;
+        font-size: 40px;
+        margin: 0 auto 20px;
+    }
+
+    .contact-button {
+        background-color: #544c40;
+        color: #f7f6eb;
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+        .contact-button:hover {
+            background-color: #3d352d;
+            color: #f7f6eb;
+        }
+
+    .contact-project-link {
+        color: #3d352d;
+    }
+</style>
+
+<section class="contact-page">
+
+    <div class="text-center mb-4">
+        <img src="~/images/leaf.svg" alt="" width="90" height="90" />
+
+        <p class="mt-3 mb-2">GREENHOUSE GLOSSARY</p>
+        <h1>Let’s Connect</h1>
+
+        <div class="contact-line"></div>
+
+        <p>
+            Have a question or an idea to share?
+            We’d love to hear your feedback about Greenhouse Glossary.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="contact-card text-center h-100">
+                <div class="contact-initial" aria-hidden="true">J</div>
+
+                <h2>Jessica</h2>
+                <p>Greenhouse Glossary Developer</p>
+
+                <a class="btn contact-button mt-2"
+                   href="https://github.com/Jess3579">
+                    Jessica’s GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="contact-card text-center h-100">
+                <div class="contact-initial" aria-hidden="true">A</div>
+
+                <h2>Alainna</h2>
+                <p>Greenhouse Glossary Developer</p>
+
+                <a class="btn contact-button mt-2"
+                   href="https://github.com/Alienplayer9958">
+                    Alainna’s GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <p class="text-center mt-4 mb-0">
+        Follow our progress:
+        <a class="contact-project-link"
+           href="https://github.com/Jess3579/GreenhouseGlossary">
+            View our project on GitHub
+        </a>
+    </p>
+
+</section>
