@@ -1,0 +1,84 @@
+﻿@page
+@model GreenhouseGlossary.Pages.Jessica.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].CommonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].ScientificName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].LightNeeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].WateringNeeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].CareDifficulty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].SoilPreferences)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant[0].CareInstructions)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Plant) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScientificName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LightNeeds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WateringNeeds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareDifficulty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoilPreferences)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareInstructions)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

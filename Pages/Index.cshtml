@@ -21,93 +21,132 @@
         Explore our plant collections and learn about their classifications and characteristics.
     </p>
 
-    
+
 </section>
 
 <section class="glossary-section">
-    <div class="row g-4">
+    <div class="section-heading">
+        <span class="section-eyebrow">YOUR NEXT DISCOVERY</span>
+        <h2>Explore Our Glossaries</h2>
+        <p>Choose a collection and start exploring.</p>
+    </div>
 
-        <!-- Jess's Glossary -->
+    <div class="row g-4">
+        <!-- Jessica's Glossary -->
         <div class="col-md-6">
-            <div class="glossary-link glossary-link-jess">
-                <p>Browse Jess's Glossary Here!</p>
-            </div>
+            <a asp-area=""
+               asp-page="/Jessica/Index"
+               class="glossary-link glossary-link-jess glossary-card-link">
+                <img src="~/Images/JessicasLogo.png" alt="Jessica's Glossary logo" class="glossary-icon" /> 
+                <div>
+                    <h3>Jess's Glossary</h3>
+                    <p>Discover Jessica's collection of plants and their characteristics.</p>
+                    <span class="glossary-action"> Explore collection <span aria-hidden="true">→</span>
+                    </span>
+                </div>
+            </a>
         </div>
 
         <!-- Alainna's Glossary -->
         <div class="col-md-6">
-            <div class="glossary-link glossary-link-alainna">
-                <p>Browse Alainna's Glossary Here!</p>
-            </div>
+            <a asp-area=""
+               asp-page="/Alainna/Index"
+               class="glossary-link glossary-link-alainna glossary-card-link">
+                <img src="~/Images/AlainnasLogo.png" alt="Alainna's Glossary logo" class="glossary-icon" />
+                <div>
+                    <h3>Alainna's Glossary</h3>
+                    <p>Explore Alainna's collection and grow your botanical knowledge.</p>
+                    <span class="glossary-action"> Explore collection <span aria-hidden="true">→</span>
+                    </span>
+                </div>
+            </a>
         </div>
-
     </div>
 </section>
 
 <section class="about-section">
-    <h2>About Our Project</h2>
+    <div class="about-decoration" aria-hidden="true">─── ❧ ───</div>
+
+    <span class="section-eyebrow">ROOTED IN CURIOSITY</span>
+    <h2>A Little About Our Project</h2>
 
     <p>
-        The Plant Glossary is a resource for discovering and learning
-        about different plant species. Browse plant information and
-        expand your knowledge of the natural world.
+        GreenhouseGlossary is a place to discover and learn about different
+        plant species. From familiar garden favorites to fascinating botanical
+        varieties, our goal is to make learning about plants engaging,
+        approachable, and enjoyable.
     </p>
 </section>
 
 <section class="features-section">
-    <h2>What You Can Discover</h2>
+    <div class="section-heading">
+        <div class="about-decoration" aria-hidden="true">─── ❀ ───</div>
+        <span class="section-eyebrow">THE WORLD OF BOTANY</span>
+        <h2>What Will You Discover?</h2>
+        <p>Get to know the details that make every plant special.</p>
+    </div>
 
     <div class="feature-container">
         <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">༺</span>
             <h3>Plant Names</h3>
-            <p>Explore common and scientific plant names.</p>
+            <p>Learn common names and scientific names used to identify plants.</p>
         </article>
 
         <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">✿</span>
             <h3>Plant Information</h3>
-            <p>Learn about plant characteristics and classifications.</p>
+            <p>Explore plant characteristics, classifications, and defining features.</p>
         </article>
 
         <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">༻</span>
             <h3>Plant Diversity</h3>
-            <p>Discover the variety of plants in our glossary.</p>
+            <p>Discover the incredible variety of species in the plant kingdom.</p>
         </article>
     </div>
 </section>
 
-<!-- Search Section -->
-<div class="row justify-content-center mb-5">
-    <div class="col-md-6">
-        <form id="plantSearchForm">
-            <div class="input-group">
-                <input type="text"
-                       id="searchTerm"
-                       class="form-control"
-                       placeholder="Search for a plant..."
-                       aria-label="Search for a plant" />
+<section class="search-section">
+    <div class="search-content">
+        <span class="section-eyebrow">LOOKING FOR SOMETHING?</span>
+        <h2>Find Your Next Favorite Plant</h2>
+        <p>Enter a plant name to get started.</p>
 
-                <button class="btn btn-outline-success" type="submit">
-                    Search
-                </button>
-            </div>
+        <form id="plantSearchForm" class="plant-search-form">
+            <label for="searchTerm" class="visually-hidden">
+                Search for a plant
+            </label>
+
+            <input type="text"
+                   id="searchTerm"
+                   class="form-control"
+                   placeholder="Try a plant name..."
+                   autocomplete="off" />
+
+            <button class="search-button" type="submit">
+                Search <span aria-hidden="true">→</span>
+            </button>
         </form>
 
-        <p id="searchMessage" class="mt-2" aria-live="polite"></p>
+        <p id="searchMessage" class="search-message" aria-live="polite"></p>
     </div>
-</div>
+</section>
 
-<script>
-    document.getElementById("plantSearchForm").addEventListener("submit", function (event) {
-        event.preventDefault();
+@section Scripts {
+    <script>
+        document.getElementById("plantSearchForm").addEventListener("submit", function (event) {
+            event.preventDefault();
 
-        const searchTerm = document.getElementById("searchTerm").value.trim();
-        const message = document.getElementById("searchMessage");
+            const searchTerm = document.getElementById("searchTerm").value.trim();
+            const message = document.getElementById("searchMessage");
 
-        if (searchTerm === "") {
-            message.textContent = "Please enter a plant name.";
-        } else {
-            message.textContent = 'Search for "' + searchTerm +
-                '" will be available when the glossary is implemented.';
-        }
-    });
-</script>
+            if (searchTerm === "") {
+                message.textContent = "Please enter a plant name.";
+            } else {
+                message.textContent = 'Search for "' + searchTerm +
+                    '" will be available when plant search is implemented.';
+            }
+        });
+    </script>
+}

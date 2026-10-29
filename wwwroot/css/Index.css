@@ -1,153 +1,87 @@
-﻿:root {
+﻿
+:root {
     --brown-dark: #3d352d;
     --brown-medium: #544c40;
-    --brown-light: #786d5d; 
-    --green-dark: #6f9472; 
-    --green-medium: #a3c7a6; 
-    --green-light: #c8e3ca; 
-    --green-pale: #e7f7e8;
-    --cream-yellow: #f7f6eb; 
-    --yellow-light: #f0efd5; 
-    --yellow-medium: #ebe8b9; 
+    --brown-light: #786d5d;
+    --green-dark: #476b4b;
+    --green-medium: #83a985;
+    --green-light: #dcebd9;
+    --green-pale: #edf4e9;
+    --cream-yellow: #f8f7ef;
+    --cream-white: #fffef9;
+    --yellow-light: #f0efd5;
+    --shadow-soft: 0 8px 24px rgba(61, 53, 45, 0.08);
+    --shadow-hover: 0 14px 30px rgba(61, 53, 45, 0.13);
 }
 
 body {
-    font-family: Garamond, serif;
-    background: var(--cream-yellow);
+    font-family: Garamond, Georgia, serif;
+    background-color: var(--cream-yellow);
+    color: var(--brown-medium);
     line-height: 1.7;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     color: var(--brown-dark);
     font-weight: 700;
     line-height: 1.2;
 }
 
 h2 {
-    margin-bottom: 1.25rem;
-    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
 }
 
 p {
     color: var(--brown-medium);
 }
 
-/* Glossary panels */
-.glossary-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem 3rem;
-    background: var(--green-medium);
-    border-radius: 15px;
-}
+/* Hero */
 
-.glossary-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 150px;
-    height: 100%;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 12px #00000015;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-    /* Glossary text */
-    .glossary-link p {
-        margin: 0;
-        color: var(--brown-medium);
-        font-size: 1.2rem;
-        font-weight: 600;
-        text-shadow: none;
-    }
-
-.glossary-link-jess,
-.glossary-link-alainna {
-    background-color: var(--cream-yellow);
-    border: 2px solid var(--green-dark);
-}
-
-.glossary-link:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px #00000020;
-}
-
-    .glossary-link:hover p {
-        color: var(--brown-medium);
-    }
-
-.about-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    text-shadow: 2px 2px 5px var(--brown-light);
-}
-
-.features-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-    text-align: center;
-}
-
-.feature-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.feature-card {
-    flex: 1;
-    padding: 1.75rem;
-    background-color: var(--green-light);
-    border: 3px solid var(--green-dark);
-    border-radius: 16px;
-}
-
-    .feature-card h3 {
-        text-shadow: 2px 2px 5px var(--brown-light);
-        margin-bottom: 0.75rem;
-    }
-
-    .feature-card p {
-        margin-bottom: 0;
-    }
-
-@media (max-width: 768px) {
-    .feature-container {
-        flex-direction: column;
-    }
-}
-
-/* Hero / homepage introduction */
 .hero-section {
-    padding: 4rem 1.5rem 3rem;
-    max-width: 1000px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 5rem 1.5rem 3.5rem;
+    background: radial-gradient(ellipse at 50% 0%, rgba(200, 227, 202, 0.48), transparent 65%);
+}
+
+.hero-content {
+    max-width: 850px;
     margin: 0 auto;
 }
 
-    .hero-section h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        margin-bottom: 1rem;
+.hero-eyebrow,
+.section-eyebrow {
+    display: inline-block;
+    color: var(--green-dark);
+    font-family: Arial, sans-serif;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.hero-section h1 {
+    font-size: clamp(2.7rem, 7vw, 5rem);
+    letter-spacing: -1.5px;
+    margin-bottom: 1.25rem;
+    color: var(--green-dark);
+    text-shadow: 2px 2px 2px var(--brown-medium);
+}
+
+    .hero-section h1 span {
         color: var(--green-dark);
-        text-shadow: 2px 2px 5px var(--green-dark);
     }
 
 .introduction {
-    max-width: 650px;
+    max-width: 620px;
     margin: 0 auto;
-    font-size: 1.15rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
 }
 
-/* Wooden shelf underneath the heading */
+/* Decorative wooden shelf */
+
 .header-shelf {
     position: relative;
     width: min(620px, 85%);
@@ -157,7 +91,7 @@ p {
 
 .shelf-board {
     position: absolute;
-    top: -59px;
+    top: -60px;
     left: 0;
     width: 100%;
     height: 30px;
@@ -165,7 +99,7 @@ p {
     background: linear-gradient( to bottom, var(--brown-medium) 0%, var(--brown-dark) 30%, var(--brown-medium) 100% );
     border-top: 3px solid var(--brown-dark);
     box-shadow: 0 7px 0 rgba(61, 53, 45, 0.12);
-    z-index: -1;
+    z-index: 0;
 }
 
 /* Shelf supports */
@@ -176,7 +110,7 @@ p {
     height: 25px;
     background: var(--brown-light);
     border-radius: 0 0 2px 2px;
-    z-index: -2;
+    z-index: -1;
 }
 
 .shelf-bracket-left {
@@ -185,4 +119,394 @@ p {
 
 .shelf-bracket-right {
     right: 15%;
+}
+
+.hero-note {
+    margin: 0;
+    color: var(--green-dark);
+    font-size: 1.05rem;
+    font-style: italic;
+}
+
+/* Shared section headings */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 2.25rem;
+}
+
+    .section-heading > p {
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+.section-eyebrow {
+    margin-bottom: 0.65rem;
+}
+
+/* Glossary collections */
+
+.glossary-section {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    padding: 3rem;
+    background: var(--green-light);
+    border: 1px solid rgba(71, 107, 75, 0.12);
+    border-radius: 24px;
+}
+
+    .glossary-section .row {
+        align-items: stretch;
+    }
+
+/* Entire glossary card is clickable */
+.glossary-card-link {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+    min-height: 190px;
+    padding: 2rem;
+    color: var(--brown-dark);
+    text-decoration: none;
+    background: var(--cream-white);
+    border: 1px solid rgba(71, 107, 75, 0.20);
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.glossary-card-link {
+    color: var(--brown-dark);
+    text-decoration: none;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--green-dark);
+}
+
+.glossary-card-link {
+    outline: 3px solid var(--green-dark);
+    outline-offset: 4px;
+}
+
+/* Logo images */
+.glossary-icon {
+    display: block;
+    flex: 0 0 95px;
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: transparent;
+    transition: transform 0.25s ease;
+}
+
+.glossary-card-link .glossary-icon {
+    transform: scale(1.05);
+}
+
+/* Card text */
+.glossary-card-link h3 {
+    color: var(--brown-dark);
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.glossary-card-link p {
+    color: var(--brown-medium);
+    margin-bottom: 0.8rem;
+    font-size: 1.03rem;
+    line-height: 1.6;
+}
+
+/* Explore collection link-style text */
+.glossary-action {
+    display: inline-block;
+    color: var(--green-dark);
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+    .glossary-action span {
+        display: inline-block;
+        margin-left: 0.2rem;
+        transition: transform 0.2s ease;
+    }
+
+.glossary-card-link .glossary-action span {
+    transform: translateX(5px);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .glossary-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .glossary-card-link {
+        gap: 1rem;
+        min-height: 160px;
+        padding: 1.5rem;
+    }
+
+    .glossary-icon {
+        flex-basis: 75px;
+        width: 75px;
+        height: 75px;
+    }
+
+    .glossary-card-link h3 {
+        font-size: 1.25rem;
+    }
+
+    .glossary-card-link p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glossary-section {
+        padding: 1rem;
+        border-radius: 18px;
+    }
+
+    .glossary-card-link {
+        gap: 1rem;
+        padding: 1.25rem;
+        min-height: 145px;
+    }
+
+    .glossary-icon {
+        flex-basis: 65px;
+        width: 65px;
+        height: 65px;
+    }
+}
+
+/* About */
+
+.about-section {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    text-align: center;
+}
+
+.about-decoration {
+    color: var(--green-medium);
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.about-section h2 {
+    margin-bottom: 1.25rem;
+}
+
+.about-section > p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.13rem;
+}
+
+/* Features */
+
+.features-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    text-align: center;
+}
+
+.feature-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.25rem;
+}
+
+.feature-card {
+    padding: 2.25rem 1.75rem;
+    background: var(--cream-white);
+    border: 1px solid #dce6d5;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 1.25rem;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.feature-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+}
+
+.feature-card p {
+    margin: 0;
+}
+
+/* Plant search */
+
+.search-section {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 1.5rem;
+}
+
+.search-content {
+    padding: 3rem;
+    background: var(--green-pale);
+    border: 1px solid #d4e3d0;
+    border-radius: 24px;
+    text-align: center;
+}
+
+    .search-content h2 {
+        margin-bottom: 0.75rem;
+    }
+
+    .search-content > p:not(.search-message) {
+        margin-bottom: 1.5rem;
+    }
+
+.plant-search-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+    .plant-search-form .form-control {
+        min-width: 0;
+        padding: 0.9rem 1.1rem;
+        background: var(--cream-white);
+        border: 1px solid #cbd9c5;
+        border-radius: 12px;
+        color: var(--brown-dark);
+        font-family: Arial, sans-serif;
+    }
+
+        .plant-search-form .form-control:focus {
+            border-color: var(--green-dark);
+            box-shadow: 0 0 0 3px rgba(71, 107, 75, 0.15);
+        }
+
+.search-button {
+    flex-shrink: 0;
+    padding: 0.85rem 1.4rem;
+    border: 1px solid var(--green-dark);
+    border-radius: 12px;
+    background: var(--green-dark);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}
+
+    .search-button:hover {
+        background: #345539;
+    }
+
+    .search-button span {
+        margin-left: 0.35rem;
+    }
+
+.search-message {
+    min-height: 1.5rem;
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 3.5rem 1.25rem 2.5rem;
+    }
+
+    .glossary-section {
+        margin: 0 1rem 2rem;
+        padding: 2rem 1.25rem;
+        border-radius: 18px;
+    }
+
+    .glossary-link {
+        padding: 1.5rem;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .feature-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .about-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .search-content {
+        padding: 2.25rem 1.25rem;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        letter-spacing: -0.7px;
+    }
+
+    .glossary-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .glossary-icon {
+        width: 54px;
+        height: 54px;
+        flex-basis: 54px;
+        font-size: 1.7rem;
+    }
+
+    .plant-search-form {
+        flex-direction: column;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }

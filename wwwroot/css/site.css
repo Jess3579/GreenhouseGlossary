@@ -20,3 +20,108 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* GreenhouseGlossary Navbar */
+
+.greenhouse-navbar {
+    background: #f8f7f0;
+    padding: 16px 0;
+    border-bottom: 2px solid #dce5d5;
+    box-shadow: 0 4px 12px rgba(39, 65, 42, 0.08);
+    margin-bottom: 24px;
+}
+
+
+/* Brand/Logo */
+.greenhouse-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #294b35 !important;
+    font-size: 1.35rem;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+    .greenhouse-brand:hover {
+        color: #527a51 !important;
+    }
+
+.greenhouse-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.brand-highlight {
+    color: #72956b;
+    margin-left: 4px;
+}
+
+@media (max-width: 575.98px) {
+    .greenhouse-logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .greenhouse-brand {
+        font-size: 1.05rem;
+        gap: 8px;
+    }
+}
+
+/* Navigation Links */
+.greenhouse-link {
+    color: #3d5941 !important;
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 10px 18px !important;
+    margin: 0 4px;
+    border-radius: 25px;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.greenhouse-link,
+.greenhouse-link {
+    background-color: #e3eadb;
+    color: #24472e !important;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Button */
+.greenhouse-toggler {
+    border: 1px solid #a8bea2;
+    border-radius: 10px;
+    padding: 7px 10px;
+}
+
+.greenhouse-toggler {
+    box-shadow: 0 0 0 3px rgba(114, 149, 107, 0.25);
+}
+
+/* Mobile Navigation */
+@media (max-width: 575.98px) {
+    .greenhouse-navbar {
+        padding: 12px 0;
+    }
+
+    .greenhouse-brand {
+        font-size: 1.15rem;
+    }
+
+    .greenhouse-navbar .navbar-collapse {
+        padding-top: 14px;
+    }
+
+    .greenhouse-navbar .navbar-nav {
+        align-items: stretch !important;
+    }
+
+    .greenhouse-link {
+        margin: 3px 0;
+        padding: 12px 15px !important;
+    }
+}
