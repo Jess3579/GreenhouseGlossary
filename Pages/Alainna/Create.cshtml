@@ -2,73 +2,148 @@
 @model GreenhouseGlossary.Pages.Alainna.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add a Plant";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/Alainna.css" asp-append-version="true" />
 }
 
-<h1>Create</h1>
+<main class="plant-index">
 
-<h4>Plant</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Plant.CommonName" class="control-label"></label>
-                <input asp-for="Plant.CommonName" class="form-control" />
-                <span asp-validation-for="Plant.CommonName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.ScientificName" class="control-label"></label>
-                <input asp-for="Plant.ScientificName" class="form-control" />
-                <span asp-validation-for="Plant.ScientificName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.Description" class="control-label"></label>
-                <input asp-for="Plant.Description" class="form-control" />
-                <span asp-validation-for="Plant.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.LightNeeds" class="control-label"></label>
-                <input asp-for="Plant.LightNeeds" class="form-control" />
-                <span asp-validation-for="Plant.LightNeeds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.WateringNeeds" class="control-label"></label>
-                <input asp-for="Plant.WateringNeeds" class="form-control" />
-                <span asp-validation-for="Plant.WateringNeeds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.CareDifficulty" class="control-label"></label>
-                <input asp-for="Plant.CareDifficulty" class="form-control" />
-                <span asp-validation-for="Plant.CareDifficulty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.ImagePath" class="control-label"></label>
-                <input asp-for="Plant.ImagePath" class="form-control" />
-                <span asp-validation-for="Plant.ImagePath" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.SoilPreferences" class="control-label"></label>
-                <input asp-for="Plant.SoilPreferences" class="form-control" />
-                <span asp-validation-for="Plant.SoilPreferences" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.CareInstructions" class="control-label"></label>
-                <input asp-for="Plant.CareInstructions" class="form-control" />
-                <span asp-validation-for="Plant.CareInstructions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <section class="plant-hero">
+        <span class="section-label">GROW YOUR COLLECTION</span>
+        <h1>Add a New Plant</h1>
+        <p>
+            Welcome a new plant to your greenhouse.
+            Enter its details below to add it to your glossary.
+        </p>
+        <span class="botanical-decoration" aria-hidden="true">❧</span>
+    </section>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    <section class="plant-collection">
+
+        <div class="collection-heading">
+            <div>
+                <span class="section-label">A NEW ADDITION</span>
+                <h2>Plant Information</h2>
+                <p>Fill in the details to help your plant thrive.</p>
+            </div>
+        </div>
+
+        <div class="create-plant-card">
+
+            <form method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger validation-summary"></div>
+
+                <div class="create-form-grid">
+
+                    <div class="form-group">
+                        <label asp-for="Plant.CommonName"></label>
+                        <input asp-for="Plant.CommonName"
+                               class="form-control"
+                               placeholder="e.g., Monstera Deliciosa" />
+                        <span asp-validation-for="Plant.CommonName"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Plant.ScientificName"></label>
+                        <input asp-for="Plant.ScientificName"
+                               class="form-control"
+                               placeholder="e.g., Monstera deliciosa" />
+                        <span asp-validation-for="Plant.ScientificName"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label asp-for="Plant.Description"></label>
+                        <textarea asp-for="Plant.Description"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Describe this plant..."></textarea>
+                        <span asp-validation-for="Plant.Description"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Plant.LightNeeds">☼ Light Needs</label>
+                        <input asp-for="Plant.LightNeeds"
+                               class="form-control"
+                               placeholder="e.g., Bright indirect light" />
+                        <span asp-validation-for="Plant.LightNeeds"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Plant.WateringNeeds">≋ Watering Needs</label>
+                        <input asp-for="Plant.WateringNeeds"
+                               class="form-control"
+                               placeholder="e.g., Water weekly" />
+                        <span asp-validation-for="Plant.WateringNeeds"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Plant.CareDifficulty">♡ Care Difficulty</label>
+                        <input asp-for="Plant.CareDifficulty"
+                               class="form-control"
+                               placeholder="e.g., Beginner" />
+                        <span asp-validation-for="Plant.CareDifficulty"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Plant.SoilPreferences">❧ Soil Preferences</label>
+                        <input asp-for="Plant.SoilPreferences"
+                               class="form-control"
+                               placeholder="e.g., Well-draining soil" />
+                        <span asp-validation-for="Plant.SoilPreferences"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label asp-for="Plant.ImagePath"></label>
+                        <input asp-for="Plant.ImagePath"
+                               class="form-control"
+                               placeholder="Enter an image path or URL" />
+                        <span asp-validation-for="Plant.ImagePath"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label asp-for="Plant.CareInstructions"></label>
+                        <textarea asp-for="Plant.CareInstructions"
+                                  class="form-control"
+                                  rows="4"
+                                  placeholder="Add watering, pruning, and other care instructions..."></textarea>
+                        <span asp-validation-for="Plant.CareInstructions"
+                              class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="create-form-actions">
+                    <button type="submit" class="plant-button">
+                        + Add Plant
+                    </button>
+
+                    <a asp-page="./Index" class="back-link">
+                        Back to Plant Glossary
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

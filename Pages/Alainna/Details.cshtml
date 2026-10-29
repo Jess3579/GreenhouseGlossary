@@ -2,72 +2,120 @@
 @model GreenhouseGlossary.Pages.Alainna.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Plant Details";
 }
 
-<h1>Details</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Alainna.css" asp-append-version="true" />
+}
 
-<div>
-    <h4>Plant</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CommonName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CommonName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ScientificName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ScientificName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.LightNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.LightNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.WateringNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.WateringNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareDifficulty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareDifficulty)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.SoilPreferences)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.SoilPreferences)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareInstructions)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareInstructions)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Plant.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+<main class="plant-index">
+
+    <section class="plant-hero">
+        <span class="section-label">GET TO KNOW YOUR PLANTS</span>
+        <h1>Plant Details</h1>
+        <p>
+            Discover the characteristics, needs, and care instructions
+            that help each plant thrive.
+        </p>
+        <span class="botanical-decoration" aria-hidden="true">❧</span>
+    </section>
+
+    <section class="plant-collection">
+
+        <div class="collection-heading">
+            <div>
+                <span class="section-label">YOUR GREENHOUSE COLLECTION</span>
+                <h2>@Model.Plant.CommonName</h2>
+                <p class="scientific-name">@Model.Plant.ScientificName</p>
+            </div>
+        </div>
+
+        <div class="details-plant-card">
+
+            @if (!string.IsNullOrWhiteSpace(Model.Plant.Description))
+            {
+                <section class="details-description">
+                    <span class="section-label">ABOUT THIS PLANT</span>
+                    <p>@Model.Plant.Description</p>
+                </section>
+            }
+
+            <section class="details-section">
+                <h3>Plant Care Guide <span aria-hidden="true">❧</span></h3>
+
+                <div class="details-care-grid">
+
+                    <div class="details-care-item">
+                        <span class="details-care-label">☼ Light Needs</span>
+                        <p>
+                            @(string.IsNullOrWhiteSpace(Model.Plant.LightNeeds)
+                                                        ? "Not specified"
+                                                        : Model.Plant.LightNeeds)
+                        </p>
+                    </div>
+
+                    <div class="details-care-item">
+                        <span class="details-care-label">≋ Watering Needs</span>
+                        <p>
+                            @(string.IsNullOrWhiteSpace(Model.Plant.WateringNeeds)
+                                                        ? "Not specified"
+                                                        : Model.Plant.WateringNeeds)
+                        </p>
+                    </div>
+
+                    <div class="details-care-item">
+                        <span class="details-care-label">♡ Care Difficulty</span>
+                        <p>
+                            @(string.IsNullOrWhiteSpace(Model.Plant.CareDifficulty)
+                                                        ? "Not specified"
+                                                        : Model.Plant.CareDifficulty)
+                        </p>
+                    </div>
+
+                    <div class="details-care-item">
+                        <span class="details-care-label">❧ Soil Preferences</span>
+                        <p>
+                            @(string.IsNullOrWhiteSpace(Model.Plant.SoilPreferences)
+                                                        ? "Not specified"
+                                                        : Model.Plant.SoilPreferences)
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="details-section">
+                <h3>Care Instructions</h3>
+                <p class="details-instructions">
+                    @(string.IsNullOrWhiteSpace(Model.Plant.CareInstructions)
+                                        ? "No care instructions have been added yet."
+                                        : Model.Plant.CareInstructions)
+                </p>
+            </section>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Plant.ImagePath))
+            {
+                <section class="details-section">
+                    <h3>Plant Image</h3>
+                    <p class="details-image-path">@Model.Plant.ImagePath</p>
+                </section>
+            }
+
+            <div class="details-actions">
+                <a asp-page="./Edit"
+                   asp-route-id="@Model.Plant.Id"
+                   class="plant-button">
+                    Edit Plant
+                </a>
+
+                <a asp-page="./Index" class="back-link">
+                    Back to Plant Glossary
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>

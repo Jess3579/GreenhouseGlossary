@@ -1,2 +1,863 @@
-﻿body {
+﻿/* Plant index page */
+
+.plant-index {
+    --brown-dark: #3d352d;
+    --brown-medium: #544c40;
+    --green-dark: #476b4b;
+    --green-medium: #83a985;
+    --green-light: #dcebd9;
+    --green-pale: #edf4e9;
+    --cream: #f8f7ef;
+    --white: #fffef9;
+    --shadow-soft: 0 8px 24px rgba(61, 53, 45, 0.08);
+    --shadow-hover: 0 14px 30px rgba(61, 53, 45, 0.13);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    color: var(--brown-medium);
+    font-family: Garamond, Georgia, serif;
+}
+
+/* Hero section */
+
+.plant-hero {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 3.5rem 2rem;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, var(--green-pale), var(--cream));
+    border: 1px solid rgba(71, 107, 75, 0.15);
+    border-radius: 24px;
+}
+
+.section-label {
+    display: block;
+    color: var(--green-dark);
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+}
+
+.plant-hero h1 {
+    color: var(--brown-dark);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.plant-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+.botanical-decoration {
+    display: block;
+    margin-top: 1rem;
+    color: var(--green-medium);
+    font-size: 2.5rem;
+    line-height: 1;
+}
+/* SEARCH, FILTER, AND SORT TOOLS */
+
+.plant-tools {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 18px;
+    margin: 28px 0 18px;
+    padding: 24px;
+    background: var(--white, #fffef9);
+    border: 1px solid rgba(71, 107, 75, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(61, 53, 45, 0.05);
+}
+
+.plant-search,
+.plant-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.plant-tools label {
+    color: var(--brown-dark, #3d352d);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.plant-tools input,
+.plant-tools select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: var(--brown-dark, #3d352d);
+    background: var(--cream, #f8f7ef);
+    border: 1px solid #d8dfd2;
+    border-radius: 9px;
+    font: inherit;
+}
+
+    .plant-tools input:focus,
+    .plant-tools select:focus {
+        outline: none;
+        border-color: var(--green-dark, #476b4b);
+        box-shadow: 0 0 0 3px rgba(131, 169, 133, 0.22);
+    }
+
+.plant-tool-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    grid-column: 1 / -1;
+    padding-top: 4px;
+}
+
+    .plant-tool-actions .plant-button {
+        border: none;
+        font: inherit;
+        cursor: pointer;
+    }
+
+.plant-reset-link {
+    color: var(--green-dark, #476b4b);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .plant-reset-link:hover {
+        color: var(--brown-dark, #3d352d);
+        text-decoration: underline;
+    }
+
+.plant-result-count {
+    margin: 18px 0;
+    color: var(--brown-medium, #544c40);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 800px) {
+    .plant-tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .plant-search {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 520px) {
+    .plant-tools {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+
+    .plant-search {
+        grid-column: auto;
+    }
+
+    .plant-tool-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+        .plant-tool-actions .plant-button {
+            width: 100%;
+        }
+}
+
+/* Collection section */
+
+.plant-collection {
+    padding: 2rem;
+    background: var(--green-light);
+    border: 1px solid rgba(71, 107, 75, 0.12);
+    border-radius: 24px;
+}
+
+.collection-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+    .collection-heading h2 {
+        color: var(--brown-dark);
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .collection-heading p {
+        margin-bottom: 0;
+        font-size: 1.05rem;
+    }
+
+/* Buttons */
+
+.plant-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.25rem;
+    color: #fff;
+    background: var(--green-dark);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plant-button {
+    color: #fff;
+    background: #36543a;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.plant-button,
+.plant-card-actions a {
+    outline: 3px solid var(--brown-dark);
+    outline-offset: 3px;
+}
+
+/* Responsive plant card grid */
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual plant cards */
+
+.plant-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.5rem;
+    background: var(--white);
+    border: 1px solid rgba(71, 107, 75, 0.16);
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plant-card {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.plant-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(71, 107, 75, 0.15);
+}
+
+    .plant-card-header h3 {
+        color: var(--brown-dark);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+        overflow-wrap: anywhere;
+    }
+
+.scientific-name {
+    color: var(--green-dark);
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.plant-decoration {
+    flex-shrink: 0;
+    color: var(--green-medium);
+    font-size: 1.8rem;
+}
+
+.plant-description {
+    margin: 1rem 0;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+/* Plant care information */
+
+.plant-care {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.care-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 0.85rem;
+    background: var(--green-pale);
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+.care-label {
+    color: var(--green-dark);
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Card action links */
+
+.plant-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(71, 107, 75, 0.15);
+}
+
+    .plant-card-actions a {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 7px;
+        font-family: Arial, sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+
+.action-details {
+    color: var(--green-dark);
+    background: var(--green-pale);
+}
+
+.action-details {
+    color: var(--green-dark);
+    background: var(--green-light);
+}
+
+.action-edit {
+    color: #78602d;
+    background: #f8f1dc;
+}
+
+.action-edit {
+    color: #5c471e;
+    background: #f0e5bf;
+}
+
+.action-delete {
+    color: #a3443e;
+    background: #f9e9e6;
+}
+
+.action-delete {
+    color: #842f2a;
+    background: #f2d7d2;
+}
+
+/* Empty state */
+
+.empty-state {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    background: var(--white);
+    border: 1px dashed rgba(71, 107, 75, 0.35);
+    border-radius: 16px;
+}
+
+    .empty-state > span {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--green-dark);
+        font-size: 2.5rem;
+    }
+
+    .empty-state h3 {
+        color: var(--brown-dark);
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .empty-state p {
+        margin-bottom: 1.25rem;
+    }
+
+/* Tablet and mobile layouts */
+
+@media (max-width: 768px) {
+    .plant-index {
+        padding: 1.25rem 0.75rem 2.5rem;
+    }
+
+    .plant-hero {
+        padding: 2.5rem 1.25rem;
+        border-radius: 18px;
+    }
+
+    .plant-collection {
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .collection-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+        .collection-heading .plant-button {
+            align-self: flex-start;
+        }
+
+    .plant-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .plant-card {
+        padding: 1rem;
+    }
+
+    .plant-care {
+        grid-template-columns: 1fr;
+    }
+
+    .plant-card-actions {
+        gap: 0.4rem;
+    }
+
+        .plant-card-actions a {
+            padding: 0.5rem 0.6rem;
+        }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plant-index *,
+    .plant-index *::before,
+    .plant-index *::after {
+        transition: none !important;
+    }
+}
+
+/* CREATE PLANT PAGE */
+
+.create-plant-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px;
+    background: var(--white, #fffef9);
+    border: 1px solid rgba(71, 107, 75, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(61, 53, 45, 0.07);
+}
+
+.create-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.create-plant-card .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.create-plant-card .full-width {
+    grid-column: 1 / -1;
+}
+
+.create-plant-card label {
+    color: var(--brown-dark, #3d352d);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.create-plant-card .form-control {
+    width: 100%;
+    padding: 12px 14px;
+    color: var(--brown-dark, #3d352d);
+    background: var(--cream, #f8f7ef);
+    border: 1px solid #d8dfd2;
+    border-radius: 10px;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .create-plant-card .form-control:focus {
+        outline: none;
+        border-color: var(--green-dark, #476b4b);
+        box-shadow: 0 0 0 3px rgba(131, 169, 133, 0.22);
+    }
+
+    .create-plant-card .form-control::placeholder {
+        color: #89877d;
+    }
+
+.create-plant-card textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.create-plant-card .text-danger {
+    font-size: 0.85rem;
+}
+
+.validation-summary:empty {
+    display: none;
+}
+
+.create-form-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e8df;
+}
+
+    .create-form-actions .plant-button {
+        font: inherit;
+        cursor: pointer;
+    }
+
+.back-link {
+    color: var(--green-dark, #476b4b);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .back-link:hover {
+        color: var(--brown-dark, #3d352d);
+        text-decoration: underline;
+    }
+
+@media (max-width: 600px) {
+    .create-plant-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .create-form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .create-plant-card .full-width {
+        grid-column: auto;
+    }
+
+    .create-form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+        .create-form-actions .plant-button {
+            width: 100%;
+        }
+
+    .back-link {
+        text-align: center;
+    }
+}
+/* DELETE PLANT PAGE */
+
+.delete-plant-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 34px;
+    background: var(--white, #fffef9);
+    border: 1px solid rgba(71, 107, 75, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(61, 53, 45, 0.07);
+}
+
+.delete-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 20px;
+    background: #f8f1e6;
+    border: 1px solid #e7d7bc;
+    border-radius: 12px;
+}
+
+.warning-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    color: var(--brown-dark, #3d352d);
+    background: #ead9bd;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.delete-warning h3 {
+    margin: 2px 0 6px;
+    color: var(--brown-dark, #3d352d);
+    font-size: 1.15rem;
+}
+
+.delete-warning p {
+    margin: 0;
+    color: var(--brown-medium, #544c40);
+    line-height: 1.6;
+}
+
+.delete-plant-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
+}
+
+.delete-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e5e8df;
+    overflow-wrap: anywhere;
+}
+
+.delete-label {
+    color: var(--green-dark, #476b4b);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.delete-value {
+    color: var(--brown-dark, #3d352d);
+    line-height: 1.6;
+}
+
+    .delete-value.scientific-name {
+        font-style: italic;
+    }
+
+.delete-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e8df;
+}
+
+.delete-confirm-button {
+    padding: 12px 24px;
+    color: #fffef9;
+    background: #8b4942;
+    border: 1px solid #8b4942;
+    border-radius: 30px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .delete-confirm-button:hover {
+        background: #713831;
+        border-color: #713831;
+        transform: translateY(-1px);
+    }
+
+.delete-cancel-link {
+    color: var(--green-dark, #476b4b);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .delete-cancel-link:hover {
+        color: var(--brown-dark, #3d352d);
+        text-decoration: underline;
+    }
+
+@media (max-width: 600px) {
+    .delete-plant-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .delete-plant-details {
+        grid-template-columns: 1fr;
+    }
+
+    .delete-warning {
+        padding: 16px;
+    }
+
+    .delete-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .delete-confirm-button {
+        width: 100%;
+    }
+
+    .delete-cancel-link {
+        text-align: center;
+    }
+}
+
+/* PLANT DETAILS PAGE */
+
+.details-plant-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px;
+    background: var(--white, #fffef9);
+    border: 1px solid rgba(71, 107, 75, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(61, 53, 45, 0.07);
+}
+
+.details-description {
+    margin-bottom: 30px;
+    padding: 22px;
+    background: var(--green-pale, #edf4e9);
+    border-radius: 14px;
+}
+
+    .details-description .section-label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .details-description p {
+        margin: 0;
+        color: var(--brown-medium, #544c40);
+        line-height: 1.8;
+    }
+
+.details-section {
+    margin-top: 28px;
+}
+
+    .details-section h3 {
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        color: var(--brown-dark, #3d352d);
+        border-bottom: 1px solid #e5e8df;
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+    }
+
+        .details-section h3 span {
+            color: var(--green-dark, #476b4b);
+        }
+
+.details-care-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.details-care-item {
+    padding: 20px;
+    background: var(--cream, #f8f7ef);
+    border: 1px solid #e5e8df;
+    border-radius: 12px;
+}
+
+.details-care-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--green-dark, #476b4b);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.details-care-item p {
+    margin: 0;
+    color: var(--brown-dark, #3d352d);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.details-instructions {
+    margin: 0;
+    color: var(--brown-medium, #544c40);
+    line-height: 1.8;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.details-image-path {
+    margin: 0;
+    color: var(--brown-medium, #544c40);
+    overflow-wrap: anywhere;
+}
+
+.details-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e8df;
+}
+
+    .details-actions .plant-button {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+@media (max-width: 600px) {
+    .details-plant-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .details-care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .details-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+        .details-actions .plant-button {
+            text-align: center;
+        }
+
+        .details-actions .back-link {
+            text-align: center;
+        }
 }

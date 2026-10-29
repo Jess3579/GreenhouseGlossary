@@ -2,83 +2,195 @@
 @model GreenhouseGlossary.Pages.Alainna.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Alainna's Greenhouse";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].CommonName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].ScientificName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].LightNeeds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].WateringNeeds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].CareDifficulty)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].ImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].SoilPreferences)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plant[0].CareInstructions)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Plant) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CommonName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScientificName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LightNeeds)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WateringNeeds)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CareDifficulty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoilPreferences)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CareInstructions)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Alainna.css" asp-append-version="true" />
 }
-    </tbody>
-</table>
+
+<main class="plant-index">
+
+    <section class="plant-hero">
+        <span class="section-label">A LITTLE MORE GREEN</span>
+        <h1>Alainna's Greenhouse</h1>
+        <p>
+            Discover new plants, explore their unique characteristics,
+            and learn how to help them thrive.
+        </p>
+        <span class="botanical-decoration" aria-hidden="true">❧</span>
+    </section>
+
+    <section class="plant-collection">
+
+        <div class="collection-heading">
+            <div>
+                <span class="section-label">GROW YOUR KNOWLEDGE</span>
+                <h2>Plant Glossary</h2>
+                <p>Browse, search, and explore my collection.</p>
+            </div>
+
+            <a asp-page="./Create" class="plant-button">
+                <span aria-hidden="true">+</span> Add Plant
+            </a>
+        </div>
+
+        <!-- Search, Filter, and Sort -->
+        <form method="get" class="plant-tools">
+
+            <div class="plant-search">
+                <label for="searchString">Search Plants</label>
+                <input id="searchString"
+                       type="search"
+                       name="SearchString"
+                       value="@Model.SearchString"
+                       placeholder="Search by common or scientific name..." />
+            </div>
+
+            <div class="plant-filter">
+                <label for="lightFilter">Light Needs</label>
+                <select id="lightFilter" name="LightFilter">
+                    <option value="">All Light Needs</option>
+                    @foreach (var option in Model.LightOptions)
+                    {
+                        <option value="@option"
+                                selected="@(Model.LightFilter == option)">
+                            @option
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="plant-filter">
+                <label for="difficultyFilter">Care Difficulty</label>
+                <select id="difficultyFilter" name="DifficultyFilter">
+                    <option value="">All Difficulties</option>
+                    @foreach (var option in Model.DifficultyOptions)
+                    {
+                        <option value="@option"
+                                selected="@(Model.DifficultyFilter == option)">
+                            @option
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="plant-filter">
+                <label for="sortOrder">Sort By</label>
+                <select id="sortOrder" name="SortOrder">
+                    <option value="common_asc"
+                            selected="@(Model.SortOrder == "common_asc")">
+                        Common Name (A–Z)
+                    </option>
+                    <option value="common_desc"
+                            selected="@(Model.SortOrder == "common_desc")">
+                        Common Name (Z–A)
+                    </option>
+                    <option value="scientific_asc"
+                            selected="@(Model.SortOrder == "scientific_asc")">
+                        Scientific Name (A–Z)
+                    </option>
+                    <option value="scientific_desc"
+                            selected="@(Model.SortOrder == "scientific_desc")">
+                        Scientific Name (Z–A)
+                    </option>
+                </select>
+            </div>
+
+            <div class="plant-tool-actions">
+                <button type="submit" class="plant-button">
+                    Search Plants
+                </button>
+
+                <a asp-page="./Index" class="plant-reset-link">
+                    Clear Filters
+                </a>
+            </div>
+
+        </form>
+
+        <p class="plant-result-count">
+            Plants found: @Model.Plant.Count
+        </p>
+
+        @if (Model.Plant != null && Model.Plant.Count > 0)
+        {
+            <div class="plant-grid">
+
+                @foreach (var item in Model.Plant)
+                {
+                    <article class="plant-card">
+
+                        <div class="plant-card-header">
+                            <div>
+                                <h3>@item.CommonName</h3>
+                                <p class="scientific-name">@item.ScientificName</p>
+                            </div>
+                            <span class="plant-decoration" aria-hidden="true">❦</span>
+                        </div>
+
+                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                        {
+                            <p class="plant-description">
+                                @item.Description
+                            </p>
+                        }
+
+                        <div class="plant-care">
+                            <div class="care-item">
+                                <span class="care-label">☀ Light Needs</span>
+                                <span>@(string.IsNullOrWhiteSpace(item.LightNeeds) ? "Not specified" : item.LightNeeds)</span>
+                            </div>
+
+                            <div class="care-item">
+                                <span class="care-label">∿ Watering</span>
+                                <span>@(string.IsNullOrWhiteSpace(item.WateringNeeds) ? "Not specified" : item.WateringNeeds)</span>
+                            </div>
+
+                            <div class="care-item">
+                                <span class="care-label">♡ Care Difficulty</span>
+                                <span>@(string.IsNullOrWhiteSpace(item.CareDifficulty) ? "Not specified" : item.CareDifficulty)</span>
+                            </div>
+
+                            <div class="care-item">
+                                <span class="care-label">≋ Soil Preferences</span>
+                                <span>@(string.IsNullOrWhiteSpace(item.SoilPreferences) ? "Not specified" : item.SoilPreferences)</span>
+                            </div>
+                        </div>
+
+                        <div class="plant-card-actions">
+                            <a asp-page="./Details"
+                               asp-route-id="@item.Id"
+                               class="action-details">Details</a>
+
+                            <a asp-page="./Edit"
+                               asp-route-id="@item.Id"
+                               class="action-edit">Edit</a>
+
+                            <a asp-page="./Delete"
+                               asp-route-id="@item.Id"
+                               class="action-delete">Delete</a>
+                        </div>
+
+                    </article>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <span aria-hidden="true">❧</span>
+                <h3>No plants found</h3>
+                <p>
+                    Try changing your search or filters to discover
+                    plants in your collection.
+                </p>
+                <a asp-page="./Index" class="plant-button">
+                    Clear Search
+                </a>
+            </div>
+        }
+
+    </section>
+</main>
