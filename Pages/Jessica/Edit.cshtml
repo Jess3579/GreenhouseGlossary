@@ -2,74 +2,296 @@
 @model GreenhouseGlossary.Pages.Jessica.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Plant";
 }
 
-<h1>Edit</h1>
+<style>
+    body {
+        background-image: url('/images/greenhouse-background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-<h4>Plant</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    .jessica-edit {
+        max-width: 900px;
+        margin: 30px auto;
+        padding-bottom: 40px;
+        color: #3d352d;
+        font-family: Garamond, Georgia, serif;
+        font-size: 20px;
+    }
+
+    .jessica-edit-back {
+        display: inline-block;
+        background-color: #f7f6eb;
+        color: #3d352d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .jessica-edit-panel {
+        background-color: #f7f6eb;
+        border: 1px solid #a3c7a6;
+        border-radius: 15px;
+        padding: 35px;
+        box-shadow: 0 5px 15px #00000030;
+    }
+
+        .jessica-edit-panel h1 {
+            color: #243e2b;
+            font-family: Garamond, Georgia, serif;
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+    .jessica-edit-intro {
+        margin-bottom: 25px;
+    }
+
+    .jessica-edit-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .jessica-edit-field {
+        min-width: 0;
+    }
+
+    .jessica-edit-wide {
+        grid-column: 1 / -1;
+    }
+
+    .jessica-edit-field label {
+        display: block;
+        color: #3d513b;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .jessica-edit-field input,
+    .jessica-edit-field select,
+    .jessica-edit-field textarea {
+        width: 100%;
+        background-color: #fffef9;
+        color: #3d352d;
+        border: 1px solid #a3b79b;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-family: inherit;
+        font-size: 19px;
+    }
+
+    .jessica-edit-field textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+        .jessica-edit-field input:focus,
+        .jessica-edit-field select:focus,
+        .jessica-edit-field textarea:focus {
+            outline: 2px solid #6f9472;
+            outline-offset: 2px;
+        }
+
+    .jessica-edit-help {
+        display: block;
+        font-size: 16px;
+        margin-top: 5px;
+        overflow-wrap: anywhere;
+    }
+
+    .jessica-edit-error {
+        display: block;
+        color: #9b3025;
+        font-size: 17px;
+        margin-top: 4px;
+    }
+
+    .jessica-edit-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .jessica-edit-save {
+        background-color: #544c40;
+        color: #f7f6eb;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        font-family: inherit;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        .jessica-edit-save:hover {
+            background-color: #3d352d;
+        }
+
+    .jessica-edit-cancel {
+        color: #3d513b;
+        padding: 10px;
+    }
+
+    @@media (max-width: 600px) {
+        .jessica-edit-panel {
+            padding: 22px;
+        }
+
+        .jessica-edit-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .jessica-edit-panel h1 {
+            font-size: 34px;
+        }
+    }
+</style>
+
+<section class="jessica-edit">
+
+    <a asp-page="./Index" class="jessica-edit-back">
+        ← Back to greenhouse
+    </a>
+
+    <div class="jessica-edit-panel">
+
+        <h1>Edit Plant</h1>
+        <p class="jessica-edit-intro">
+            Update your plant’s information and care details.
+        </p>
+
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div asp-validation-summary="ModelOnly"
+                 class="jessica-edit-error"></div>
+
             <input type="hidden" asp-for="Plant.Id" />
-            <div class="form-group">
-                <label asp-for="Plant.CommonName" class="control-label"></label>
-                <input asp-for="Plant.CommonName" class="form-control" />
-                <span asp-validation-for="Plant.CommonName" class="text-danger"></span>
+
+            <div class="jessica-edit-grid">
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.CommonName">
+                        Common name
+                    </label>
+                    <input asp-for="Plant.CommonName" />
+                    <span asp-validation-for="Plant.CommonName"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.ScientificName">
+                        Scientific name
+                    </label>
+                    <input asp-for="Plant.ScientificName" />
+                    <span asp-validation-for="Plant.ScientificName"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field jessica-edit-wide">
+                    <label asp-for="Plant.Description">
+                        Description
+                    </label>
+                    <textarea asp-for="Plant.Description"
+                              rows="3"></textarea>
+                    <span asp-validation-for="Plant.Description"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.LightNeeds">
+                        Light needs
+                    </label>
+                    <input asp-for="Plant.LightNeeds" />
+                    <span asp-validation-for="Plant.LightNeeds"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.WateringNeeds">
+                        Watering needs
+                    </label>
+                    <input asp-for="Plant.WateringNeeds" />
+                    <span asp-validation-for="Plant.WateringNeeds"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.CareDifficulty">
+                        Care difficulty
+                    </label>
+                    <select asp-for="Plant.CareDifficulty">
+                        <option value="">Select difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Difficult">Difficult</option>
+                    </select>
+                    <span asp-validation-for="Plant.CareDifficulty"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field">
+                    <label asp-for="Plant.SoilPreferences">
+                        Soil preferences
+                    </label>
+                    <input asp-for="Plant.SoilPreferences" />
+                    <span asp-validation-for="Plant.SoilPreferences"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field jessica-edit-wide">
+                    <label asp-for="Plant.ImagePath">
+                        Image path
+                    </label>
+                    <input asp-for="Plant.ImagePath"
+                           placeholder="/images/spider-plant.png"
+                           aria-describedby="jessica-edit-image-help" />
+                    <small id="jessica-edit-image-help"
+                           class="jessica-edit-help">
+                        Place the image in wwwroot/images, then enter
+                        /images/ followed by its filename.
+                    </small>
+                    <span asp-validation-for="Plant.ImagePath"
+                          class="jessica-edit-error"></span>
+                </div>
+
+                <div class="jessica-edit-field jessica-edit-wide">
+                    <label asp-for="Plant.CareInstructions">
+                        Care instructions
+                    </label>
+                    <textarea asp-for="Plant.CareInstructions"
+                              rows="4"></textarea>
+                    <span asp-validation-for="Plant.CareInstructions"
+                          class="jessica-edit-error"></span>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="Plant.ScientificName" class="control-label"></label>
-                <input asp-for="Plant.ScientificName" class="form-control" />
-                <span asp-validation-for="Plant.ScientificName" class="text-danger"></span>
+
+            <div class="jessica-edit-actions">
+                <button type="submit" class="jessica-edit-save">
+                    Save Changes
+                </button>
+
+                <a asp-page="./Details"
+                   asp-route-id="@Model.Plant.Id"
+                   class="jessica-edit-cancel">
+                    Cancel
+                </a>
             </div>
-            <div class="form-group">
-                <label asp-for="Plant.Description" class="control-label"></label>
-                <input asp-for="Plant.Description" class="form-control" />
-                <span asp-validation-for="Plant.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.LightNeeds" class="control-label"></label>
-                <input asp-for="Plant.LightNeeds" class="form-control" />
-                <span asp-validation-for="Plant.LightNeeds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.WateringNeeds" class="control-label"></label>
-                <input asp-for="Plant.WateringNeeds" class="form-control" />
-                <span asp-validation-for="Plant.WateringNeeds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.CareDifficulty" class="control-label"></label>
-                <input asp-for="Plant.CareDifficulty" class="form-control" />
-                <span asp-validation-for="Plant.CareDifficulty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.ImagePath" class="control-label"></label>
-                <input asp-for="Plant.ImagePath" class="form-control" />
-                <span asp-validation-for="Plant.ImagePath" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.SoilPreferences" class="control-label"></label>
-                <input asp-for="Plant.SoilPreferences" class="form-control" />
-                <span asp-validation-for="Plant.SoilPreferences" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Plant.CareInstructions" class="control-label"></label>
-                <input asp-for="Plant.CareInstructions" class="form-control" />
-                <span asp-validation-for="Plant.CareInstructions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+</section>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

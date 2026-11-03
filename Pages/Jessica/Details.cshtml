@@ -2,72 +2,225 @@
 @model GreenhouseGlossary.Pages.Jessica.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Plant.CommonName;
 }
 
-<h1>Details</h1>
+<style>
+    body {
+        background-image: url('/images/greenhouse-background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-<div>
-    <h4>Plant</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CommonName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CommonName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ScientificName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ScientificName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.LightNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.LightNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.WateringNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.WateringNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareDifficulty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareDifficulty)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.SoilPreferences)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.SoilPreferences)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareInstructions)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareInstructions)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Plant.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+    .jessica-details {
+        color: #3d352d;
+        font-family: Garamond, Georgia, serif;
+        font-size: 20px;
+        max-width: 1100px;
+        margin: 30px auto;
+        padding-bottom: 40px;
+    }
+
+    .jessica-back {
+        display: inline-block;
+        background-color: #f7f6eb;
+        color: #3d352d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+        .jessica-back:hover {
+            color: #3d513b;
+        }
+
+    .jessica-details-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        align-items: center;
+        gap: 25px;
+        background-color: #f7f6eb;
+        border: 1px solid #a3c7a6;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px #00000030;
+    }
+
+    .jessica-details-image {
+        display: block;
+        width: 100%;
+        height: 420px;
+        object-fit: contain;
+        background: none;
+        border: none;
+        border-radius: 0;
+        padding: 10px;
+        filter: drop-shadow(0 10px 8px #00000025);
+    }
+
+    .jessica-care-panel {
+        min-width: 0;
+        background: none;
+        border: none;
+        padding: 10px;
+        box-shadow: none;
+        overflow-wrap: anywhere;
+    }
+
+        .jessica-care-panel h1,
+        .jessica-care-panel h2 {
+            font-family: Garamond, Georgia, serif;
+        }
+
+        .jessica-care-panel h1 {
+            color: #243e2b;
+            font-size: 42px;
+            margin: 0 0 5px;
+        }
+
+    .jessica-scientific-name {
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    .jessica-care-list dt {
+        color: #3d513b;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .jessica-care-list dd {
+        margin: 3px 0 0;
+    }
+
+    .jessica-care-panel h2 {
+        font-size: 27px;
+        margin-top: 25px;
+    }
+
+    .jessica-details-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .jessica-details-button {
+        display: inline-block;
+        background-color: #544c40;
+        color: #f7f6eb;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+        .jessica-details-button:hover {
+            background-color: #3d352d;
+            color: #f7f6eb;
+        }
+
+    .jessica-delete-link {
+        display: inline-block;
+        color: #793d30;
+        border: 1px solid #793d30;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+        .jessica-delete-link:hover {
+            background-color: #793d30;
+            color: #f7f6eb;
+        }
+
+    @@media (max-width: 767px) {
+        .jessica-details-panel {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .jessica-details-image {
+            height: 280px;
+        }
+
+        .jessica-care-panel {
+            padding: 0;
+        }
+
+            .jessica-care-panel h1 {
+                font-size: 34px;
+            }
+    }
+</style>
+
+<section class="jessica-details">
+
+    <a asp-page="./Index" class="jessica-back">
+        ← Back to greenhouse
+    </a>
+
+    <div class="jessica-details-panel">
+
+        <div>
+            @if (!string.IsNullOrWhiteSpace(Model.Plant.ImagePath))
+            {
+                <img src="@Url.Content(Model.Plant.ImagePath)"
+                     alt="@Model.Plant.CommonName"
+                     class="jessica-details-image" />
+            }
+            else
+            {
+                <img src="~/images/leaf.svg"
+                     alt=""
+                     class="jessica-details-image" />
+            }
+        </div>
+
+        <div class="jessica-care-panel">
+
+            <h1>@Model.Plant.CommonName</h1>
+
+            <p class="jessica-scientific-name">
+                @Model.Plant.ScientificName
+            </p>
+
+            <p>@Model.Plant.Description</p>
+
+            <dl class="jessica-care-list">
+                <dt>Light</dt>
+                <dd>@Model.Plant.LightNeeds</dd>
+
+                <dt>Watering</dt>
+                <dd>@Model.Plant.WateringNeeds</dd>
+
+                <dt>Soil</dt>
+                <dd>@Model.Plant.SoilPreferences</dd>
+
+                <dt>Care difficulty</dt>
+                <dd>@Model.Plant.CareDifficulty</dd>
+            </dl>
+
+            <h2>Care Instructions</h2>
+            <p>@Model.Plant.CareInstructions</p>
+
+            <div class="jessica-details-actions">
+                <a asp-page="./Edit"
+                   asp-route-id="@Model.Plant.Id"
+                   class="jessica-details-button">
+                    Edit Plant
+                </a>
+
+                <a asp-page="./Delete"
+                   asp-route-id="@Model.Plant.Id"
+                   class="jessica-delete-link">
+                    Delete Plant
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>

@@ -2,75 +2,211 @@
 @model GreenhouseGlossary.Pages.Jessica.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Plant";
 }
 
-<h1>Delete</h1>
+<style>
+    body {
+        background-image: url('/images/greenhouse-background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Plant</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CommonName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CommonName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ScientificName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ScientificName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.LightNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.LightNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.WateringNeeds)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.WateringNeeds)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareDifficulty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareDifficulty)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.ImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.ImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.SoilPreferences)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.SoilPreferences)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant.CareInstructions)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Plant.CareInstructions)
-        </dd>
-    </dl>
-    
-    <form method="post">
-        <input type="hidden" asp-for="Plant.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
-    </form>
-</div>
+    .jessica-delete {
+        max-width: 900px;
+        margin: 30px auto;
+        padding-bottom: 40px;
+        color: #3d352d;
+        font-family: Garamond, Georgia, serif;
+        font-size: 20px;
+    }
+
+    .jessica-delete-back {
+        display: inline-block;
+        background-color: #f7f6eb;
+        color: #3d352d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .jessica-delete-panel {
+        background-color: #f7f6eb;
+        border: 1px solid #a3c7a6;
+        border-radius: 15px;
+        padding: 35px;
+        box-shadow: 0 5px 15px #00000030;
+    }
+
+        .jessica-delete-panel h1 {
+            color: #793d30;
+            font-family: Garamond, Georgia, serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+    .jessica-delete-preview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        align-items: center;
+        gap: 25px;
+        margin: 25px 0;
+    }
+
+    .jessica-delete-image {
+        display: block;
+        width: 100%;
+        height: 280px;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 6px #00000025);
+    }
+
+    .jessica-delete-info {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+        .jessica-delete-info h2 {
+            color: #243e2b;
+            font-family: Garamond, Georgia, serif;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+    .jessica-delete-scientific {
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .jessica-delete-warning {
+        color: #793d30;
+        font-weight: bold;
+    }
+
+    .jessica-delete-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .jessica-delete-confirm {
+        background-color: #793d30;
+        color: #f7f6eb;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        font-family: inherit;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        .jessica-delete-confirm:hover {
+            background-color: #5c2c22;
+        }
+
+    .jessica-delete-cancel {
+        display: inline-block;
+        background-color: #544c40;
+        color: #f7f6eb;
+        border-radius: 6px;
+        padding: 10px 24px;
+        text-decoration: none;
+    }
+
+        .jessica-delete-cancel:hover {
+            background-color: #3d352d;
+            color: #f7f6eb;
+        }
+
+    @@media (max-width: 600px) {
+        .jessica-delete-panel {
+            padding: 22px;
+        }
+
+        .jessica-delete-preview {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .jessica-delete-image {
+            height: 220px;
+        }
+
+        .jessica-delete-panel h1 {
+            font-size: 34px;
+        }
+    }
+</style>
+
+<section class="jessica-delete">
+
+    <a asp-page="./Index" class="jessica-delete-back">
+        ← Back to greenhouse
+    </a>
+
+    <div class="jessica-delete-panel">
+
+        <h1>Delete Plant?</h1>
+        <p>Are you sure you want to remove this plant from the greenhouse?</p>
+
+        <div class="jessica-delete-preview">
+
+            <div>
+                @if (!string.IsNullOrWhiteSpace(Model.Plant.ImagePath))
+                {
+                    <img src="@Url.Content(Model.Plant.ImagePath)"
+                         alt="@Model.Plant.CommonName"
+                         class="jessica-delete-image" />
+                }
+                else
+                {
+                    <img src="~/images/leaf.svg"
+                         alt=""
+                         class="jessica-delete-image" />
+                }
+            </div>
+
+            <div class="jessica-delete-info">
+                <h2>@Model.Plant.CommonName</h2>
+
+                <p class="jessica-delete-scientific">
+                    @Model.Plant.ScientificName
+                </p>
+
+                <p>@Model.Plant.Description</p>
+
+                <p>
+                    <strong>Care difficulty:</strong>
+                    @Model.Plant.CareDifficulty
+                </p>
+            </div>
+
+        </div>
+
+        <p class="jessica-delete-warning">
+            This will permanently delete the plant’s saved information.
+        </p>
+
+        <form method="post">
+            <input type="hidden" asp-for="Plant.Id" />
+
+            <div class="jessica-delete-actions">
+                <button type="submit" class="jessica-delete-confirm">
+                    Yes, Delete Plant
+                </button>
+
+                <a asp-page="./Details"
+                   asp-route-id="@Model.Plant.Id"
+                   class="jessica-delete-cancel">
+                    Cancel
+                </a>
+            </div>
+        </form>
+
+    </div>
+
+</section>
