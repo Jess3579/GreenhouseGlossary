@@ -16,7 +16,7 @@ namespace GreenhouseGlossary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.22")
+                .HasAnnotation("ProductVersion", "8.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -46,7 +46,6 @@ namespace GreenhouseGlossary.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LightNeeds")
